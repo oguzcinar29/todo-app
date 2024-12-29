@@ -13,7 +13,7 @@ export default function AddTaskButton({ setTasks }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("32");
+
           setTasks((prev) => [...prev, task]);
         }}
         className="flex items-center gap-2"
