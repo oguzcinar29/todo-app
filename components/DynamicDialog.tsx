@@ -8,27 +8,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "./ui/button";
 import { ReactNode } from "react";
 
 type DynamicDialog = {
-  readonly buttonTitle: ReactNode;
   readonly dialogTitle: ReactNode;
   readonly toggle: () => JSX.Element; // Accept a function that returns JSX
+  readonly button: ReactNode;
 };
 
 export default function DynamicDialog({
-  buttonTitle,
   dialogTitle,
   toggle,
+  button,
 }: DynamicDialog) {
   return (
     <div className="">
       <Dialog>
-        <DialogTrigger className="w-full">
-          <Button asChild className="w-full">
-            {buttonTitle}
-          </Button>
+        <DialogTrigger asChild className="w-full">
+          {button}
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>

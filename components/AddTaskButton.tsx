@@ -1,11 +1,16 @@
 "use client";
-import { Plus } from "lucide-react";
 import DynamicDialog from "./DynamicDialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useState } from "react";
+import { Task } from "@/app/page";
+import { Plus } from "lucide-react";
 
-export default function AddTaskButton({ setTasks }) {
+type AddTaskButtonProps = {
+  readonly setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+};
+
+export default function AddTaskButton({ setTasks }: AddTaskButtonProps) {
   const [task, setTask] = useState("");
 
   const toggle = () => {
@@ -14,11 +19,19 @@ export default function AddTaskButton({ setTasks }) {
         onSubmit={(e) => {
           e.preventDefault();
 
-          setTasks((prev) => [...prev, task]);
+          setTasks((prev) => [
+            ...prev,
+            { id: Date.now(), title: task.trim(), completed: false }, // Ensure task is a valid Task object
+          ]);
+          setTask("");
         }}
         className="flex items-center gap-2"
       >
-        <Input type="text" onChange={(e) => setTask(e.target.value)} />
+        <Input
+          type="text"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+        />
         <Button type="submit">Submit</Button>
       </form>
     );
@@ -27,10 +40,10 @@ export default function AddTaskButton({ setTasks }) {
   return (
     <section className=" ">
       <DynamicDialog
-        buttonTitle={
-          <span className="flex items-center gap-2">
+        button={
+          <Button className="flex items-center gap-2">
             ADD NEW TASK <Plus />
-          </span>
+          </Button>
         }
         dialogTitle={<span className=" font-medium">Edit Task</span>}
         toggle={toggle}
