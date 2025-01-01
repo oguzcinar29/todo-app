@@ -28,7 +28,7 @@ export default function DynamicDialog({
           {button}
         </DialogTrigger>
         <DialogContent>
-          <DialogHeader>
+          <DialogHeader className="flex flex-col gap-3">
             <DialogTitle>{dialogTitle}</DialogTitle>
             {toggle()}
           </DialogHeader>

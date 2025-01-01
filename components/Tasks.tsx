@@ -13,7 +13,7 @@ export default function Tasks({ tasks, setTasks }: TasksProps) {
         <span>TASK</span>
         <span>ACTION</span>
       </div>
-      {tasks.map((task) => {
+      {tasks?.map((task) => {
         return <SingleTask key={task.id} task={task} setTasks={setTasks} />;
       })}
     </section>

@@ -11,7 +11,6 @@ export type Task = {
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  console.log(tasks[0]);
 
   return (
     <main className=" max-w-4xl space-y-3   my-5 mx-auto text-center">

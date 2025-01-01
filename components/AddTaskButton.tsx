@@ -5,6 +5,7 @@ import { Input } from "./ui/input";
 import { useState } from "react";
 import { Task } from "@/app/page";
 import { Plus } from "lucide-react";
+import { DialogClose } from "./ui/dialog";
 
 type AddTaskButtonProps = {
   readonly setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
@@ -32,7 +33,9 @@ export default function AddTaskButton({ setTasks }: AddTaskButtonProps) {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <Button type="submit">Submit</Button>
+        <DialogClose asChild>
+          <Button type="submit">Submit</Button>
+        </DialogClose>
       </form>
     );
   };
